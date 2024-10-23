@@ -33,12 +33,12 @@ load balancer for push provissioning with self signed certs. There's a nginx run
 
 ## Pull Provssioning
 ### vcert with nginx
-environment with vcert and nginx, the certificate is created at runtime and will soon expire. Downloads a playbook at startup
-  configurable items:
-    ENV START_PORT=30744          port the app is listening on
-    ENV PORT_COUNT=1              number of webpages, this demo is only using one.
-    ENV HOSTNAME=myvcertapp       name of the app, used in the certificate
-    ENV DOMAIN_NAME=tlsp.demo     domain name, used in the certificate
-    ENV PLAYBOOK_URL="https..."   playbook URL to be downloaded 
-    TLSPC_APIKEY                  TLS PS API key (inject via secret, not via config map)
+environment with vcert and nginx, the certificate is created at runtime and will soon expire. Downloads a playbook at startup<br>
+  configurable items:<br>
+    ENV START_PORT=30744          port the app is listening on<br>
+    ENV PORT_COUNT=1              number of webpages, this demo is only using one.<br>
+    ENV HOSTNAME=myvcertapp       name of the app, used in the certificate<br>
+    ENV DOMAIN_NAME=tlsp.demo     domain name, used in the certificate<br>
+    ENV PLAYBOOK_URL="https..."   playbook URL to be downloaded<br>
+    TLSPC_APIKEY                  TLS PS API key (inject via secret, not via config map)<br>
 
