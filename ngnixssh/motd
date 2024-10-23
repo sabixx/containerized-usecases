@@ -1,0 +1,20 @@
+============================================================
+       Welcome to the Venafi Demo Environment
+============================================================
+
+-------------------- System Information --------------------
+
+   System:        Nginx
+   Demo:          PUSH provisioning
+   Config file:   /etc/nginx/http.d/ssl_$port.conf
+   Certificates:  /etc/nginx/ssl/
+
+   commands:
+     reset the environment
+       reset_pod.sh
+       
+------------------------------------------------------------
+
+       (c) 2024 Venafi, a CyberArk Company
+============================================================
+

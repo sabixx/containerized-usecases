@@ -1,0 +1,23 @@
+global
+    log stdout format raw local0
+    maxconn 4096
+    user haproxy
+    group haproxy
+
+defaults
+    log global
+    mode http
+    option httplog
+    option dontlognull
+    timeout connect 5000ms
+    timeout client 50000ms
+    timeout server 50000ms
+
+frontend https-in
+    bind *:444 ssl crt /usr/local/etc/haproxy/certs/haproxy_445.pem ca-file /usr/local/etc/haproxy/certs/haproxy_445.pem
+        http-request set-header X-Original-Port %[dst_port]
+    default_backend servers
+
+backend servers
+    balance roundrobin
+    server server1 127.0.0.1:80 check

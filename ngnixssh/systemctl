@@ -1,0 +1,12 @@
+#!/bin/sh
+
+if [ "$1" = "restart" ] && [ "$2" = "nginx" ]; then
+    echo "Restarting Nginx service..."
+    killall nginx || true
+    echo "Nginx service restarted successfully."
+    exit 0
+fi
+
+# For all other cases, mimic systemctl's 'command not found' behavior
+echo "System has not been booted with systemd as init system (PID 1). Can't operate."
+exit 1

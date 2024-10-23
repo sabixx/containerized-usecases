@@ -1,0 +1,26 @@
+============================================================
+       Welcome to the Venafi Demo Environment
+============================================================
+
+-------------------- System Information --------------------
+
+   System:        vcert - Nginx
+   Demo:          PULL provisioning
+   Config file:   /etc/nginx/http.d/ssl_$port.conf
+   Certificates:  /etc/nginx/ssl/
+
+   commands:
+     show playbook  
+       cat /root/playbook.yaml
+       
+     run vcert
+       vcert run -f /root/playbook.yaml
+
+     reset the environment
+       reset_pod.sh
+
+------------------------------------------------------------
+
+       (c) 2024 Venafi, a CyberArk Company
+============================================================
+

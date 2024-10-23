@@ -1,0 +1,16 @@
+
+docker build -t tomcatpush .
+
+
+
+docker stop tomcatpush-container && docker rm tomcatpush-container
+
+docker run -d --name tomcatpush-container -e START_PORT=30844 -e PORT_COUNT=5 -e HOSTNAME=mytomcatapp -e DOMAIN_NAME=tlsp.demo -p 30881:7681 -p 30844-30848:30844-30848 tomcatpush:latest
+
+
+
+docker exec -it tomcatpush-container /bin/sh
+
+
+docker tag tomcatpush:latest sabix/tomcatpush:latest
+docker push sabix/tomcatpush:latest

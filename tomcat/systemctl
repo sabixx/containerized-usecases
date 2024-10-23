@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [ "$1" = "restart" ] && [ "$2" = "tomcat" ]; then
+    echo "Restarting Tomcat service..."
+    # Stop Tomcat
+    /usr/share/tomcat/bin/catalina.sh stop || true
+    # Start Tomcat
+    /usr/share/tomcat/bin/catalina.sh start || true
+    echo "Tomcat service restarted successfully."
+    exit 0
+fi
+
+# For all other cases, mimic systemctl's 'command not found' behavior
+echo "System has not been booted with systemd as init system (PID 1). Can't operate."
+exit 1

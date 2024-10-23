@@ -1,0 +1,14 @@
+
+docker build -t jenkins-codesigning .
+
+
+
+docker stop jenkins-codesigning-container && docker rm jenkins-codesigning-container
+docker run -d --name jenkins-codesigning-container -e VENAFI_CREDENTIALS=/path/to/credentials -e VENAFI_TPP_URL=https://dc.tlsp.demo -e VENAFI_ZONE=cicd-jenkins -p 7681:7681 -p 8080-8090:8080-8090 -p 50000:5000 jenkins-codesigning:latest
+
+
+docker exec -it jenkins-codesigning-container /bin/sh
+
+
+docker tag jenkins-codesigning:latest sabix/jenkins-codesigning:latest
+docker push sabix/jenkins-codesigning:latest

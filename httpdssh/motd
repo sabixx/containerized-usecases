@@ -1,0 +1,20 @@
+============================================================
+       Welcome to the Venafi Demo Environment
+============================================================
+
+-------------------- System Information --------------------
+
+   System:        Apache
+   Demo:          PUSH provisioning
+   Config file:   /etc/apache2/conf.d/ssl_xxxx.conf
+   Certificates:  /etc/apache2/ssl/
+
+   commands:
+     reset the environment
+       reset_pod.sh
+
+------------------------------------------------------------
+
+       (c) 2024 Venafi, a CyberArk Company
+============================================================
+

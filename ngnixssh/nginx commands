@@ -1,0 +1,13 @@
+docker stop nginx-ssl-container && docker rm nginx-ssl-container
+
+docker build -t sshnginx .
+
+docker run -d --name nginx-ssl-container -e START_PORT=30444 -e PORT_COUNT=5 -e HOSTNAME=mynginxapp -e DOMAIN_NAME=tlsp.demo -p 37681:7681 -p 522:22 -p 544:30444 -p 545:30445 -p 546:30446 -p 547:30447 -p 548:30448 sshnginx:latest 
+
+docker exec -it nginx-ssl-container /bin/sh
+
+
+docker build -t sshnginx .
+
+docker tag sshnginx:latest sabix/sshnginx:latest
+docker push sabix/sshnginx:latest

@@ -1,0 +1,12 @@
+#!/bin/sh
+
+if [ "$1" = "haproxy" ] && [ "$2" = "restart" ]; then
+    echo "Restarting HAProxy service..."
+    kill -9 $(pidof haproxy) || true
+    echo "HAProxy service restarted successfully."
+    exit 0
+fi
+
+# For all other cases, mimic service's 'unrecognized service' behavior
+echo "service: unrecognized service"
+exit 1

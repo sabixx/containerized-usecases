@@ -1,0 +1,44 @@
+#!/bin/sh
+
+# Function to kill HAProxy process if running
+kill_haproxy() {
+    if pidof haproxy > /dev/null; then
+        echo "Killing existing HAProxy process..."
+        kill -9 $(pidof haproxy) || true
+        echo "HAProxy process killed."
+    else
+        echo "HAProxy is not running."
+    fi
+}
+
+# Check for restart (kill process)
+if ([ "$1" = "haproxy" ] && [ "$2" = "restart" ]) || ([ "$1" = "restart" ] && [ "$2" = "haproxy" ]); then
+    echo "Restarting HAProxy service..."
+    kill_haproxy
+    echo "HAProxy service restart process completed."
+    exit 0
+fi
+
+# Check for stop (kill process)
+if ([ "$1" = "haproxy" ] && [ "$2" = "stop" ]) || ([ "$1" = "stop" ] && [ "$2" = "haproxy" ]); then
+    echo "Stopping HAProxy service..."
+    kill_haproxy
+    echo "HAProxy service stopped."
+    exit 0
+fi
+
+# Check for reload (send HUP signal)
+if ([ "$1" = "haproxy" ] && [ "$2" = "reload" ]) || ([ "$1" = "reload" ] && [ "$2" = "haproxy" ]); then
+    echo "Reloading HAProxy service..."
+    if pidof haproxy > /dev/null; then
+        kill -HUP $(pidof haproxy)
+        echo "HAProxy configuration reloaded."
+    else
+        echo "HAProxy is not running; cannot reload."
+    fi
+    exit 0
+fi
+
+# Unrecognized service or command
+echo "service: unrecognized service"
+exit 1

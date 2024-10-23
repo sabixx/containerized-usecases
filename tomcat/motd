@@ -1,0 +1,21 @@
+============================================================
+       Welcome to the Venafi Demo Environment
+============================================================
+
+-------------------- System Information --------------------
+
+   System:        Tomcat
+   Demo:          PUSH provisioning
+   Config file:   /etc/tomcat/tomcat-ssl_xxxx.xml
+   Certificates:  /usr/share/tomcat/ssl/
+
+   commands:
+     reset the environment
+       reset_pod.sh
+       
+------------------------------------------------------------
+
+       (c) 2024 Venafi, a CyberArk Company
+============================================================
+
+

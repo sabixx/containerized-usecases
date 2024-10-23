@@ -1,0 +1,14 @@
+docker stop vcert-nginx-container && docker rm vcert-nginx-container
+
+docker build -t vcertnginx .
+
+docker run -d --name vcert-nginx-container -e TokenURL="https://api.venafi.cloud/v1/oauth2/v2.0/0ce51ed1-da6f-11ec-a787-89187550eb51/token" -e TLSPC_ClientSecret="L6Igh-Sc4Vrzk6bQEEZF8Ddl_EXKvBzww8XWS3mR8bOf6nUlcQleKqNaNbzyw8xn" -e START_PORT=30744 -e PORT_COUNT=5 -e HOSTNAME=mynginxapp -e DOMAIN_NAME=tlsp.demo -p 37681:7681 -p 30744:30744 -p 30745:30745 -p 30746:30746 -p 30747:30747 -p 30748:30748 vcertnginx:latest 
+
+docker run -d --name vcert-nginx-container -e TLSPC_APIKEY="83f80b48-5aa1-4f6d-8694-dce46e910366" -e PLAYBOOK_URL="https://raw.githubusercontent.com/sabixx/vcertplaybooks/refs/heads/main/TLSPC_US_POD_NGINX_Demo.yaml" -e START_PORT=30744 -e PORT_COUNT=5 -e HOSTNAME=mynginxapp -e DOMAIN_NAME=tlsp.demo -p 37681:7681 -p 30744:30744 -p 30745:30745 -p 40746:30746 -p 30747:30747 -p 30748:30748 vcertnginx:latest 
+
+docker exec -it vcert-nginx-container /bin/sh
+
+sed -i "s|<playbook>|$(basename ${PLAYBOOK_URL})|g" /etc/motd
+
+docker tag vcertnginx:latest sabix/vcertnginx:latest
+docker push sabix/vcertnginx:latest
